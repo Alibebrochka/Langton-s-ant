@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Langton's ant", "Langton's ant.vcxproj", "{FF772313-3F41-45F6-BD96-81C921B81027}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Debug|x64.ActiveCfg = Debug|x64
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Debug|x64.Build.0 = Debug|x64
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Debug|x86.ActiveCfg = Debug|Win32
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Debug|x86.Build.0 = Debug|Win32
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Release|x64.ActiveCfg = Release|x64
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Release|x64.Build.0 = Release|x64
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Release|x86.ActiveCfg = Release|Win32
+		{FF772313-3F41-45F6-BD96-81C921B81027}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {305B46A3-55DE-477C-847A-8A133379F385}
+	EndGlobalSection
+EndGlobal
