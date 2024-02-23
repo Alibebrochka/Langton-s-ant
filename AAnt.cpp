@@ -11,7 +11,6 @@ void AAnt::Go(HDC hdc)
 
 	while (left > 0 && left < 1900 - scale &&  top > 0 && top < 1000 - scale)
 	{
-		if (_kbhit()) { break; }
 		//next = (GetPixel(hdc, left + cntr_rect, top + cntr_rect) == RGB(0, 0, 0)) ? true : false;
 		next = black_white(GetPixel(hdc, left + cntr_rect, top + cntr_rect));
 		switch (dir)

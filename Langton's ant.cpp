@@ -13,6 +13,9 @@ AAnt Ant;
 HINSTANCE hInst;                                // текущий экземпляр
 WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки заголовка
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
+HANDLE myHandleA;
+HANDLE myHandleB;
+DWORD dwThreadIdA, dwThreadIdB;
 
 // Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -137,8 +140,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
-            case IDM_EXIT: 
-                    DestroyWindow (hWnd); 
+            case IDM_EXIT:
+            {
+                //myHandleA = CreateThread(NULL, 0, DestroyWindow, hWnd, 0, &dwThreadIdA);
+                DestroyWindow(hWnd);
+
+            }
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
@@ -153,9 +160,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // ,_______________________________________________________________________________________
             // |
             // v
-            Ant.Go(hdc);
-            //std::thread A(&AAnt::Go, &Ant ,hdc);
-            //A.join();           
+            //Ant.Go(hdc);
+            std::thread A(&AAnt::Go, &Ant ,hdc);
+            A.join();           
             EndPaint(hWnd, &ps);
         }
         break;
