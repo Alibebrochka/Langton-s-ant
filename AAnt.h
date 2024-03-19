@@ -7,13 +7,16 @@ class AAnt
 {
 	bool next{};
 	int scale{};
-	int left{}, top{}, right{}, bot{};
 	int cntr_rect{};
 	HBRUSH red{}, black{}, white{};
 	eDirection dir;
+	RECT Ant_Rect{};
 public:
 	AAnt();
+
+	void Init(HWND hWnd);
 	void Go(HDC hdc);
+	int On_Time(HWND hWnd) const;
 private:
 	void direction(eDirection dir);
 };

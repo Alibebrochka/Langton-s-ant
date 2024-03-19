@@ -107,9 +107,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       0, 0, 1920, 1040, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
-   {
       return FALSE;
-   }
+
+   Ant.Init(hWnd);
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -160,9 +160,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // ,_______________________________________________________________________________________
             // |
             // v
-            //Ant.Go(hdc);
-            std::thread A(&AAnt::Go, &Ant ,hdc);
-            A.join();           
+            Ant.Go(hdc);
+            //std::thread A(&AAnt::Go, &Ant ,hdc);
+            //A.join();           
             EndPaint(hWnd, &ps);
         }
         break;
@@ -171,6 +171,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
+    case WM_TIMER:
+        if (wParam == WM_USER + 1)
+            Ant.On_Time(hWnd);
+        break;
     }
     return 0;
 }
