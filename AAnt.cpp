@@ -1,5 +1,5 @@
 #include "AAnt.h"
-AAnt::AAnt() :scale{ 10 },cntr_rect{ scale / 2}, dir{ LEFT }, next{ true },
+AAnt::AAnt() :scale{ 15 },cntr_rect{ scale / 2}, dir{ LEFT }, next{ true },
 red(CreateSolidBrush(RGB(255, 0, 0))),
 black(CreateSolidBrush(RGB(0, 0, 0))),
 white(CreateSolidBrush(RGB(255, 255, 255))){}
@@ -10,12 +10,26 @@ void AAnt::Init(HWND hWnd)
 	Ant_Rect.right = Ant_Rect.left + scale;
 	Ant_Rect.top = 520;
 	Ant_Rect.bottom = Ant_Rect.top + scale;
-	SetTimer(hWnd, WM_USER + 1, 1, 0);
+	SetTimer(hWnd, WM_USER + 1, 0, 0);
 }
 
 void AAnt::Go(HDC hdc)
 {
 	next = (GetPixel(hdc, Ant_Rect.left + cntr_rect, Ant_Rect.top + cntr_rect) == RGB(0, 0, 0)) ? true : false;
+
+	Direction(dir);
+	Draw(hdc);
+	Movement(dir);
+}
+
+int AAnt::On_Time(HWND hWnd) const
+{
+	InvalidateRect(hWnd, &Ant_Rect, FALSE);
+	return 0;
+}
+
+void AAnt::Direction(eDirection &dir) const 
+{
 	switch (dir)
 	{
 	case LEFT:
@@ -33,22 +47,18 @@ void AAnt::Go(HDC hdc)
 	default:
 		break;
 	}
+}
+
+void AAnt::Draw(HDC hdc)
+{
 	SelectObject(hdc, red);
 	Rectangle(hdc, Ant_Rect.left, Ant_Rect.top, Ant_Rect.right, Ant_Rect.bottom);
 
 	SelectObject(hdc, next ? white : black);
 	Rectangle(hdc, Ant_Rect.left, Ant_Rect.top, Ant_Rect.right, Ant_Rect.bottom);
-
-	direction(dir);
 }
 
-int AAnt::On_Time(HWND hWnd) const
-{
-	InvalidateRect(hWnd, &Ant_Rect, FALSE);
-	return 0;
-}
-
-void AAnt::direction(eDirection dir)
+void AAnt::Movement(eDirection dir)
 {
 	switch (dir)
 	{

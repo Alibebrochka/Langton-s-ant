@@ -4,7 +4,6 @@
 #include "framework.h"
 #include "Langton's ant.h"
 #include "AAnt.h"
-#include <thread>
 
 #define MAX_LOADSTRING 100
 
@@ -81,7 +80,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_LANGTONSANT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    wcex.hbrBackground  = CreateSolidBrush(RGB(255, 255, 255));
+    wcex.hbrBackground  = CreateSolidBrush(RGB(0, 0, 0));
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_LANGTONSANT);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
@@ -160,9 +159,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // ,_______________________________________________________________________________________
             // |
             // v
-            Ant.Go(hdc);
-            //std::thread A(&AAnt::Go, &Ant ,hdc);
-            //A.join();           
+            Ant.Go(hdc);     
             EndPaint(hWnd, &ps);
         }
         break;
