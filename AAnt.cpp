@@ -18,7 +18,8 @@ void AAnt::Go(HDC hdc)
 	next = (GetPixel(hdc, Ant_Rect.left + cntr_rect, Ant_Rect.top + cntr_rect) == RGB(0, 0, 0)) ? true : false;
 
 	Direction(dir);
-	Draw(hdc);
+	Draw(hdc, red);
+	Draw(hdc, next ? white : black);
 	Movement(dir);
 }
 
@@ -49,12 +50,9 @@ void AAnt::Direction(eDirection &dir) const
 	}
 }
 
-void AAnt::Draw(HDC hdc)
+void AAnt::Draw(HDC hdc, HBRUSH color)
 {
-	SelectObject(hdc, red);
-	Rectangle(hdc, Ant_Rect.left, Ant_Rect.top, Ant_Rect.right, Ant_Rect.bottom);
-
-	SelectObject(hdc, next ? white : black);
+	SelectObject(hdc, color);
 	Rectangle(hdc, Ant_Rect.left, Ant_Rect.top, Ant_Rect.right, Ant_Rect.bottom);
 }
 

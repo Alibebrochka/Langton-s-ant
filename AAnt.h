@@ -21,7 +21,7 @@ public:
 
 private:
 	void Direction(eDirection &dir) const ;
-	void Draw(HDC hdc);
+	void Draw(HDC hdc, HBRUSH color);
 	void Movement(eDirection dir);
 };
 
